@@ -178,7 +178,7 @@ The API tests use `MONGO_URI_TEST` when set (CI starts a `mongo:7` service) and 
 - **Backend on Render.** New Web Service from this repo, root directory `server`, build `npm ci`, start `npm start`, health check `/api/health`, env vars from the table. Or use **New > Blueprint** with `render.yaml`.
 - **Frontend on Vercel.** Import the repo, root directory `client`, framework Vite, env vars `VITE_*`. `vercel.json` rewrites all routes to `index.html` so deep links work.
 - **GitHub Actions** (`.github/workflows/ci.yml`) runs server tests against a real MongoDB plus client lint, tests and build on every pull request. On `main`, after both pass, it calls the Render deploy hook (`RENDER_DEPLOY_HOOK_URL` secret). Vercel deploys `main` and creates preview deployments for PRs through its GitHub integration.
-- **Workflow.** Each milestone was built on a feature branch and merged with a pull request.
+- **Workflow.** Each milestone was built on its own feature branch (`feat/...`) and merged into `main`.
 
 ## Design notes
 
