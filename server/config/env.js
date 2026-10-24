@@ -13,12 +13,21 @@ const list = (v) =>
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 
+// MONGO_URI may contain a <password> (or YOURPASSWORD) placeholder that is filled from
+// MONGO_PASSWORD, URL-encoded, so special characters in the password cannot break the link.
+function buildMongoUri() {
+  const uri = (process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/text-to-learn').trim();
+  const pass = (process.env.MONGO_PASSWORD || '').trim();
+  if (!pass) return uri;
+  return uri.replace(/<password>|<db_password>|YOURPASSWORD/, encodeURIComponent(pass));
+}
+
 export const env = {
   nodeEnv,
   isProd: nodeEnv === 'production',
   isTest: nodeEnv === 'test',
   port: Number(process.env.PORT) || 5000,
-  mongoUri: process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/text-to-learn',
+  mongoUri: buildMongoUri(),
   corsOrigins: list(process.env.CORS_ORIGINS || 'http://localhost:5173'),
 
   auth0: {
