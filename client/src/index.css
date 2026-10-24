@@ -1,0 +1,175 @@
+@import 'tailwindcss';
+
+/* Exercise-book palette: cool paper, navy ink, fountain-pen blue, the red margin line. */
+:root {
+  --paper: #f6f8fc;
+  --sheet: #ffffff;
+  --ink: #1b2340;
+  --muted: #59627f;
+  --line: #e2e7f1;
+  --rule: #d3ddf0;
+  --pen: #2f4bd6;
+  --pen-strong: #2338a8;
+  --pen-soft: #e8edff;
+  --on-pen: #ffffff;
+  --margin: #e0525a;
+  --ok: #1d7f54;
+  --ok-soft: #e3f5ec;
+  --bad: #c03a44;
+  --bad-soft: #fdecee;
+  --warn: #9a6512;
+  --warn-soft: #fdf3e1;
+  --code-bg: #f1f4fa;
+  --lh: 2.5rem;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #0e1322;
+    --sheet: #151b2e;
+    --ink: #e7ebf6;
+    --muted: #9ea8c6;
+    --line: #242c46;
+    --rule: #26314f;
+    --pen: #8097ff;
+    --pen-strong: #a9b8ff;
+    --pen-soft: #1f2a52;
+    --on-pen: #0e1322;
+    --margin: #f06a72;
+    --ok: #52c792;
+    --ok-soft: #12301f;
+    --bad: #f07a83;
+    --bad-soft: #3a1a20;
+    --warn: #e0b060;
+    --warn-soft: #33270f;
+    --code-bg: #0b1020;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper: #0e1322;
+  --sheet: #151b2e;
+  --ink: #e7ebf6;
+  --muted: #9ea8c6;
+  --line: #242c46;
+  --rule: #26314f;
+  --pen: #8097ff;
+  --pen-strong: #a9b8ff;
+  --pen-soft: #1f2a52;
+  --on-pen: #0e1322;
+  --margin: #f06a72;
+  --ok: #52c792;
+  --ok-soft: #12301f;
+  --bad: #f07a83;
+  --bad-soft: #3a1a20;
+  --warn: #e0b060;
+  --warn-soft: #33270f;
+  --code-bg: #0b1020;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-rule: var(--rule);
+  --color-pen: var(--pen);
+  --color-pen-strong: var(--pen-strong);
+  --color-pen-soft: var(--pen-soft);
+  --color-on-pen: var(--on-pen);
+  --color-margin: var(--margin);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-code: var(--code-bg);
+  --font-sans: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible', system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque', 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid var(--pen);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* The ruled page used by the prompt. Lines scroll with the text. */
+.ruled {
+  position: relative;
+  background-color: var(--sheet);
+  background-image: linear-gradient(to bottom, transparent calc(var(--lh) - 1px), var(--rule) calc(var(--lh) - 1px));
+  background-size: 100% var(--lh);
+  background-attachment: local;
+  line-height: var(--lh);
+}
+
+.margin-line {
+  position: relative;
+}
+.margin-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3.25rem;
+  width: 2px;
+  background: var(--margin);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* long-form lesson text */
+.prose-lesson {
+  max-width: 68ch;
+  font-size: 1.075rem;
+  line-height: 1.75;
+}
+
+@keyframes ink-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.ink-in {
+  animation: ink-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}
