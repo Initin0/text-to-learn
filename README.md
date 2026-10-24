@@ -2,9 +2,7 @@
 
 Type a topic like "Intro to React Hooks" or "Basics of Copyright Law" and get a full online course: 3 to 6 modules, 3 to 5 lessons each, with objectives, key topics, readings, an embedded YouTube video, a graded quiz, PDF export and a Hinglish audio explanation. Courses are saved per user behind Auth0 login.
 
-**Live demo:** https://YOUR-APP.vercel.app  
-**API:** https://YOUR-API.onrender.com/api/health  
-**Video walkthrough (5 min):** https://YOUR-VIDEO-LINK
+**Live demo:**  https://text-to-learn-umber.vercel.app/
 
 ![Course page](docs/screenshots/course.png)
 
