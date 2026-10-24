@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-export const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+// VITE_BACKEND_URL wins when set, so the backend address can be changed without touching VITE_API_URL.
+export const API_BASE_URL = (import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
 
 const http = axios.create({ baseURL: `${API_BASE_URL}/api`, timeout: 120000 });
 
